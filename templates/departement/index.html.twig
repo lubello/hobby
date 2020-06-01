@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Departement index{% endblock %}
+
+{% block body %}
+    <h1>Departement index</h1>
+<div class="col col-md-6">
+    <a class="btn btn-primary btn-sm btn-primary" href="{{ path('departement_new') }}">Create new</a>
+
+    <table class="table table-hover table-condensed">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Region</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for departement in departements %}
+            <tr>
+                <td>{{ departement.id }}</td>
+                <td>
+                    <a href="{{ path('departement_show', {'id': departement.id}) }}">{{ departement.nom }}</a>
+                </td>
+                <td>{{ departement.region }}</td>
+                <td>
+                    <a class="btn btn-primary btn-sm btn-info" href="{{ path('departement_show', {'id': departement.id}) }}">show</a>
+                    <a class="btn btn-primary btn-sm btn-primary" href="{{ path('departement_edit', {'id': departement.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary btn-sm btn-primary" href="{{ path('departement_new') }}">Create new</a>
+    </div>
+{% endblock %}

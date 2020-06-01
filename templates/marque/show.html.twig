@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Marque{% endblock %}
+
+{% block body %}
+    <h1>Marque</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ marque.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ marque.nom }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ marque.description }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ marque.createdAt ? marque.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ marque.updatedAt ? marque.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DeletedAt</th>
+                <td>{{ marque.deletedAt ? marque.deletedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>CreatedBy</th>
+                <td>{{ marque.createdBy }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedBy</th>
+                <td>{{ marque.updatedBy }}</td>
+            </tr>
+            <tr>
+                <th>DeletedBy</th>
+                <td>{{ marque.deletedBy }}</td>
+            </tr>
+            <tr>
+                <th>Tag1</th>
+                <td>{{ marque.tag1 }}</td>
+            </tr>
+            <tr>
+                <th>Tag2</th>
+                <td>{{ marque.tag2 }}</td>
+            </tr>
+            <tr>
+                <th>Tag3</th>
+                <td>{{ marque.tag3 }}</td>
+            </tr>
+            <tr>
+                <th>Tag4</th>
+                <td>{{ marque.tag4 }}</td>
+            </tr>
+            <tr>
+                <th>Tag5</th>
+                <td>{{ marque.tag5 }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('marque_index') }}">back to list</a>
+
+    <a href="{{ path('marque_edit', {'id': marque.id}) }}">edit</a>
+
+    {{ include('marque/_delete_form.html.twig') }}
+{% endblock %}

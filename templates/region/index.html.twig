@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Region index{% endblock %}
+
+{% block body %}
+    <h1>Region index</h1>
+
+    <div class="col col-md-6">
+    <a class="btn btn-primary btn-sm btn-primary" href="{{ path('region_new') }}">Create new</a>
+
+    <table class="table table-hover table-condensed">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for region in regions %}
+            <tr>
+                <td>{{ region.id }}</td>
+                <td>{{ region.nom }}</td>
+                <td>
+                    <a class="btn btn-primary btn-sm btn-info" href="{{ path('region_show', {'id': region.id}) }}">show</a>
+                    <a class="btn btn-primary btn-sm btn-primary" href="{{ path('region_edit', {'id': region.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+   <a class="btn btn-primary btn-sm btn-primary" href="{{ path('region_new') }}">Create new</a>
+   </div>
+{% endblock %}

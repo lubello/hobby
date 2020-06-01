@@ -1,0 +1,365 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Article{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-12">
+            <!-- markup -->
+            <canvas id="lineChartExample"></canvas>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card card-chart">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-sm-6 text-left">
+                            <h5 class="card-category">Total Shipments</h5>
+                            <h2 class="card-title">Performance</h2>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="btn-group btn-group-toggle float-right" data-toggle="buttons">
+                                <label class="btn btn-sm btn-primary btn-simple active" id="0">
+                                    <input type="radio" name="options" checked="">
+                                    <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Accounts</span>
+                                    <span class="d-block d-sm-none">
+                          <i class="tim-icons icon-single-02"></i>
+                        </span>
+                                </label>
+                                <label class="btn btn-sm btn-primary btn-simple" id="1">
+                                    <input type="radio" class="d-none d-sm-none" name="options">
+                                    <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Purchases</span>
+                                    <span class="d-block d-sm-none">
+                          <i class="tim-icons icon-gift-2"></i>
+                        </span>
+                                </label>
+                                <label class="btn btn-sm btn-primary btn-simple" id="2">
+                                    <input type="radio" class="d-none" name="options">
+                                    <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Sessions</span>
+                                    <span class="d-block d-sm-none">
+                          <i class="tim-icons icon-tap-02"></i>
+                        </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="chart-area"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                        <canvas id="chartBig1" width="1668" height="220" class="chartjs-render-monitor" style="display: block; width: 1668px; height: 220px;"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-2 col-md-6">
+            <div class="card card-stats">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="info-icon text-center icon-warning">
+                                <i class="tim-icons icon-chat-33"></i>
+                            </div>
+                        </div>
+                        <div class="col-7">
+                            <div class="numbers">
+                                <p class="card-category">Number</p>
+                                <h3 class="card-title">150GB</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <hr>
+                    <div class="stats">
+                        <i class="tim-icons icon-refresh-01"></i> Update Now
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-2 col-md-6">
+            <div class="card card-stats">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="info-icon text-center icon-primary">
+                                <i class="tim-icons icon-shape-star"></i>
+                            </div>
+                        </div>
+                        <div class="col-7">
+                            <div class="numbers">
+                                <p class="card-category">Followers</p>
+                                <h3 class="card-title">+45k</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <hr>
+                    <div class="stats">
+                        <i class="tim-icons icon-sound-wave"></i> Last Research
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-2 col-md-6">
+            <div class="card card-stats">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="info-icon text-center icon-success">
+                                <i class="tim-icons icon-single-02"></i>
+                            </div>
+                        </div>
+                        <div class="col-7">
+                            <div class="numbers">
+                                <p class="card-category">Users</p>
+                                <h3 class="card-title">150,000</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <hr>
+                    <div class="stats">
+                        <i class="tim-icons icon-trophy"></i> Customers feedback
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-2 col-md-6">
+            <div class="card card-stats">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="info-icon text-center icon-danger">
+                                <i class="tim-icons icon-molecule-40"></i>
+                            </div>
+                        </div>
+                        <div class="col-7">
+                            <div class="numbers">
+                                <p class="card-category">Errors</p>
+                                <h3 class="card-title">12</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <hr>
+                    <div class="stats">
+                        <i class="tim-icons icon-watch-time"></i> In the last hours
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-2 col-md-6">
+            <div class="card card-stats">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="info-icon text-center icon-warning">
+                                <i class="tim-icons icon-chat-33"></i>
+                            </div>
+                        </div>
+                        <div class="col-7">
+                            <div class="numbers">
+                                <p class="card-category">Number</p>
+                                <h3 class="card-title">150GB</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <hr>
+                    <div class="stats">
+                        <i class="tim-icons icon-refresh-01"></i> Update Now
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-2 col-md-6">
+            <div class="card card-stats">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="info-icon text-center icon-danger">
+                                <i class="tim-icons icon-molecule-40"></i>
+                            </div>
+                        </div>
+                        <div class="col-7">
+                            <div class="numbers">
+                                <p class="card-category">Errors</p>
+                                <h3 class="card-title">12</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <hr>
+                    <div class="stats">
+                        <i class="tim-icons icon-watch-time"></i> In the last hours
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card card-chart">
+                <div class="card-header">
+                    <h5 class="card-category">Total Shipments</h5>
+                    <h3 class="card-title"><i class="tim-icons icon-bell-55 text-primary"></i> 763,215</h3>
+                </div>
+                <div class="card-body">
+                    <div class="chart-area"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                        <canvas id="chartLinePurple" style="display: block; width: 529px; height: 220px;" width="529" height="220" class="chartjs-render-monitor"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card card-chart">
+                <div class="card-header">
+                    <h5 class="card-category">Daily Sales</h5>
+                    <h3 class="card-title"><i class="tim-icons icon-delivery-fast text-info"></i> 3,500€</h3>
+                </div>
+                <div class="card-body">
+                    <div class="chart-area"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                        <canvas id="CountryChart" width="529" height="220" class="chartjs-render-monitor" style="display: block; width: 529px; height: 220px;"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card card-chart">
+                <div class="card-header">
+                    <h5 class="card-category">Completed Tasks</h5>
+                    <h3 class="card-title"><i class="tim-icons icon-send text-success"></i> 12,100K</h3>
+                </div>
+                <div class="card-body">
+                    <div class="chart-area"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                        <canvas id="chartLineGreen" width="529" height="220" class="chartjs-render-monitor" style="display: block; width: 529px; height: 220px;"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    {{ graphe|raw }}
+
+    <h1>Create new Article</h1>
+
+    {{ include('article/_form.html.twig') }}
+
+    <a href="{{ path('article_index') }}">back to list</a>
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script>
+    <!-- javascript init -->
+    // General configuration for the charts with Line gradientStroke
+    gradientChartOptionsConfiguration =  {
+    maintainAspectRatio: false,
+    legend: {
+    display: false
+    },
+
+    tooltips: {
+    backgroundColor: '#fff',
+    titleFontColor: '#333',
+    bodyFontColor: '#666',
+    bodySpacing: 4,
+    xPadding: 12,
+    mode: "nearest",
+    intersect: 0,
+    position: "nearest"
+    },
+    responsive: true,
+    scales:{
+    yAxes: [{
+    barPercentage: 1.6,
+    gridLines: {
+    drawBorder: false,
+    color: 'rgba(29,140,248,0.0)',
+    zeroLineColor: "transparent",
+    },
+    ticks: {
+    suggestedMin:50,
+    suggestedMax: 110,
+    padding: 20,
+    fontColor: "#9a9a9a"
+    }
+    }],
+
+    xAxes: [{
+    barPercentage: 1.6,
+    gridLines: {
+    drawBorder: false,
+    color: 'rgba(220,53,69,0.1)',
+    zeroLineColor: "transparent",
+    },
+    ticks: {
+    padding: 20,
+    fontColor: "#9a9a9a"
+    }
+    }]
+    }
+    };
+
+    var ctx = document.getElementById("lineChartExample").getContext("2d");
+
+    var gradientStroke = ctx.createLinearGradient(0,230,0,50);
+
+    gradientStroke.addColorStop(1, 'rgba(72,72,176,0.2)');
+    gradientStroke.addColorStop(0.2, 'rgba(72,72,176,0.0)');
+    gradientStroke.addColorStop(0, 'rgba(119,52,169,0)'); //purple colors
+
+    var data = {
+    labels: ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'],
+    datasets: [{
+    label: "Data",
+    fill: true,
+    backgroundColor: gradientStroke,
+    borderColor: '#d048b6',
+    borderWidth: 2,
+    borderDash: [],
+    borderDashOffset: 0.0,
+    pointBackgroundColor: '#d048b6',
+    pointBorderColor:'rgba(255,255,255,0)',
+    pointHoverBackgroundColor: '#d048b6',
+    pointBorderWidth: 20,
+    pointHoverRadius: 4,
+    pointHoverBorderWidth: 15,
+    pointRadius: 4,
+    data: [ 60,110,70,100, 75, 90, 80, 100, 70, 80, 120, 80],
+    }]
+    };
+
+    var myChart = new Chart(ctx, {
+    type: 'line',
+    data: data,
+    options: gradientChartOptionsConfiguration
+    });
+
+    $(document).ready(function(){
+        // ok alert('eeee');
+    });
+    </script>
+
+{% endblock %}

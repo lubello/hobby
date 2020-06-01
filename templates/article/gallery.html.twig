@@ -1,0 +1,114 @@
+{% extends 'base.html.twig' %}
+{# use "form_div_layout.html.twig" #}
+{% block body %}
+    <!--
+    <button class="btn btn-primary btn-block" onclick="demo.showNotification('bottom','right')">Bottom Right</button>
+    -->
+
+    <!--
+    <div class="alert alert-warning fade show" role="alert">
+    <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <i class="tim-icons icon-simple-remove"></i>
+    </button>
+    </div>
+    -->
+    <button type="button" class="btn btn-lg btn-danger" data-toggle="popover" data-container="body" data-original-title="Popover Title" data-content="And here's some amazing content. It's very engaging. Right?" data-color="primary">Click to toggle popover</button>
+
+    <!-- Example single danger button -->
+    <div class="btn-group">
+        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Action dfgdfgdfgdfgdfgdfg
+        </button> 
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Separated link</a>
+        </div>
+    </div>
+
+    <div class="containerrrrrrr">
+        <div class="row">
+            <div class="col-md-2">
+                {%  include 'article/_filter.html.twig' with {form: form} only %}
+             </div>
+            <div class="col-md-10">
+                {# total items count #}
+                    <div class="count">
+                        Total rows: {{ articles.getTotalItemCount }}
+                    </div>
+                <div class="navigation">
+                    {{ knp_pagination_render(articles) }}
+                </div>
+                <tr>
+                    {# sorting of properties based on query components #}
+                    <th>{{ knp_pagination_sortable(articles, 'Id', 'a.id') }}</th>
+                    <th{% if articles.isSorted('a.Title') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(articles, 'Title', 'a.title') }}</th>
+                    <th>{{ knp_pagination_sortable(articles, 'Release', ['a.date', 'a.time']) }}</th>
+                </tr>
+
+                <div class="grid">
+                    {% for article in articles %}
+                        {% include 'article/_card.html.twig' with {article: article, cardLight: cardLight} %}
+                    {% endfor %}
+                </div>
+                <div class="navigation">
+                    {{ knp_pagination_render(articles) }}
+                </div>
+            </div>
+           
+        </div>
+    </div>
+
+    
+{% endblock %}
+
+{% block title %}
+Articles
+{% endblock %}
+
+
+{% block stylesheets_custom %}
+    <style>
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 20px
+        }
+        .article-filter {
+            display: block;
+            position: sticky;
+            top:20px;
+        }
+    </style>
+{% endblock %}
+
+{% block javascript_custom %}
+    <script>
+        $("document").ready(function(){
+           // alert('ffff');
+            $(".article-qt-down").click(function($a) {
+                clique($(this), $(".article-qt"));
+            });
+
+            $(".article-qt-up").click(function() {
+                clique($(this, $(".article-qt")));
+            });
+
+        });
+
+        function clique (classe, valeur) {
+            const href = $(classe).attr('data-href');
+            const id   = $(classe).attr('data-id');
+            $.ajax({
+                url: href,
+
+            }).done( function(data) {
+                //console.log(data);
+                $("#article-qt-"+id).html(data);
+            })
+        }
+    </script>
+{% endblock %}

@@ -1,0 +1,32 @@
+{{ form_start(form, { attr: {class: 'article-filter'}}) }}
+    
+    <sdiv>
+        <button type="submit" class="btn btn-primary w-100">Filtrer</button>
+    </sdiv>
+
+    <h4>Recherche</h4>
+
+    {{ form_row(form.q) }}
+
+    <h4> Marques </h4>
+    {{ form_row(form.marques) }}
+
+    <h4> Quantité </h4>
+    <div class="row">
+        <div class="col-md-6">
+            {{ form_row(form.min) }}
+        </div>
+        <div class="col-md-6">
+            {{ form_row(form.max) }}
+        </div>
+    </div>
+
+    
+    {{ form_row(form.tag) }}
+    {{ form_row(form.ref) }}
+
+    <div>
+        <button type="submit" class="btn btn-primary w-100">Filtrer</button>
+    </div>
+
+{{ form_end(form)}}

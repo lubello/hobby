@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ville index{% endblock %}
+
+{% block body %}
+    <h1>Ville index</h1>
+    
+    <div class="col col-md-6">
+    <a class="btn btn-primary btn-sm btn-primary" href="{{ path('region_new') }}">Create new</a>
+ 
+    <table class="table table-hover table-condensed">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ville in villes %}
+            <tr>
+                <td>{{ ville.id }}</td>
+                <td>{{ ville.nom }}</td>
+               <td>
+                    <a class="btn btn-primary btn-sm btn-info" href="{{ path('ville_show', {'id': ville.id}) }}">show</a>
+                    <a class="btn btn-primary btn-sm btn-primary" href="{{ path('ville_edit', {'id': ville.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary btn-sm btn-primary" href="{{ path('ville_new') }}">Create new</a>
+    </div>
+{% endblock %}
