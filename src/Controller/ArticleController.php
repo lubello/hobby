@@ -32,7 +32,8 @@ class ArticleController extends AbstractController
 
     /**
      * @Route("/", name="article_index", methods={"GET"})
-     * @param ArticleRepository $articleRepository
+     * @param Request $request
+     * @param PaginatorInterface $paginator
      * @return Response
      */
     public function index(Request $request, PaginatorInterface $paginator): Response
@@ -46,7 +47,8 @@ class ArticleController extends AbstractController
         $articles = $this->articleRepository->search($search);
 
         return $this->render('article/index.html.twig', [
-            'articles' => $articles,
+            'articles'  => $articles,
+            'paginator' => $paginator,  //pas utilisé
         ]);
     }
 
@@ -58,6 +60,8 @@ class ArticleController extends AbstractController
      */
     public function new(Request $request): Response
     {
+        $articleRepo = $this->getDoctrine()->getRepository(Article::class);
+
         $article = new Article();
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
@@ -83,8 +87,8 @@ class ArticleController extends AbstractController
 
         return $this->render('article/new.html.twig', [
             'article' => $article,
-            'form' => $form->createView(),
-            'graphe' => $graphe
+            'form'    => $form->createView(),
+            'graphe'  => $graphe
         ]);
     }
 

@@ -67,11 +67,6 @@ class DepartementType extends AbstractType
                     ])
                 ]
             ])
-
-
-
-
-
         ;
     }
 

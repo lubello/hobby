@@ -29,37 +29,52 @@ class ArticleRepository extends ServiceEntityRepository
         parent::__construct($registry, Article::class);
         $this->paginator = $paginator;
     }
+    public function toString() {
+        return '';
+    }
+    /**
+     * @return Article[] Returns an array of Article objects
+     */
+    public function findForTag1()
+    {
+        $q = $this->createQueryBuilder('a')
+            ->select('a.tag1')
+            ->distinct()
+            ->where('a.tag1 is not null')
+            ->orderBy('a.tag1', 'ASC')
+            ->getQuery()
+            //->getResult()
+            ->getArrayResult()
+        ;
 
-    // /**
-    //  * @return Article[] Returns an array of Article objects
-    //  */
-    /*
-    public function findByExampleField($value)
+        $ret = [];
+        foreach ($q as $item) {
+            $ret[$item['tag1']] = $item['tag1'];
+        }
+        return $ret;
+    }
+
+    public function findForTag2(string $tag1)
     {
         return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
+            ->distinct()
+            ->select('a.tag2')
+            ->andWhere('a.tag1 = :val')
+            ->setParameter('val', $tag1)
             ->orderBy('a.id', 'ASC')
-            ->setMaxResults(10)
+            //->setMaxResults(10)
             ->getQuery()
             ->getResult()
-        ;
+            ;
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Article
-    {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 
-    public function search(ArticleSearchDto $dto) : PaginationInterface
+
+
+
+
+
+    public function search(ArticleSearchDto $dto) : ?PaginationInterface
     {
         try {
             $q = $this
