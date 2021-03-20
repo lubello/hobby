@@ -10,7 +10,14 @@
 
     <div class="card-body">
         <div class="card-title"> {{ article.nom }} </div>
-        <div class="card-title"> {{ article.tag1 }} {% if article.tag2|length %},&nbsp; {% endif %} {{ article.tag2 }} </div>
+        <div class="card-title">
+            {{ article.tag1 }}
+            {% if article.tag2|length %},&nbsp; {% endif %} {{ article.tag2 }}
+            {% if article.tag3|length %},&nbsp; {% endif %} {{ article.tag3 }}
+            {% if article.tag4|length %},&nbsp; {% endif %} {{ article.tag4 }}
+            {% if article.tag5|length %},&nbsp; {% endif %} {{ article.tag5 }}
+            {% if article.tag6|length %},&nbsp; {% endif %} {{ article.tag6 }}
+        </div>
         
         <p class="card-title text-muted"> {{ article.description }}</p>
     </div>

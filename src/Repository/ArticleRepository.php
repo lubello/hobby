@@ -29,21 +29,21 @@ class ArticleRepository extends ServiceEntityRepository
         parent::__construct($registry, Article::class);
         $this->paginator = $paginator;
     }
-    public function toString() {
+    public function toString(): string {
         return '';
     }
+
+
     /**
      * @return Article[] Returns an array of Article objects
      */
-    public function findForTag1()
-    {
+    public function findForTag1(): array {
         $q = $this->createQueryBuilder('a')
-            ->select('a.tag1')
             ->distinct()
+            ->select('a.tag1')
             ->where('a.tag1 is not null')
             ->orderBy('a.tag1', 'ASC')
             ->getQuery()
-            //->getResult()
             ->getArrayResult()
         ;
 
@@ -54,23 +54,87 @@ class ArticleRepository extends ServiceEntityRepository
         return $ret;
     }
 
-    public function findForTag2(string $tag1)
-    {
-        return $this->createQueryBuilder('a')
+    /**
+     * @return Article[] Returns an array of Article objects
+     */
+    public function findForTag2(): array {
+        $q = $this->createQueryBuilder('a')
             ->distinct()
             ->select('a.tag2')
-            ->andWhere('a.tag1 = :val')
-            ->setParameter('val', $tag1)
-            ->orderBy('a.id', 'ASC')
-            //->setMaxResults(10)
+            ->where('a.tag2 is not null')
+            ->orderBy('a.tag2', 'ASC')
             ->getQuery()
-            ->getResult()
+            ->getArrayResult()
             ;
+
+        $ret = [];
+        foreach ($q as $item) {
+            $ret[$item['tag2']] = $item['tag2'];
+        }
+        return $ret;
     }
 
 
+    /**
+     * @return Article[] Returns an array of Article objects
+     */
+    public function findForTag3(): array {
+        $q = $this->createQueryBuilder('a')
+            ->distinct()
+            ->select('a.tag3')
+            ->where('a.tag3 is not null')
+            ->orderBy('a.tag3', 'ASC')
+            ->getQuery()
+            ->getArrayResult()
+        ;
+
+        $ret = [];
+        foreach ($q as $item) {
+            $ret[$item['tag3']] = $item['tag3'];
+        }
+        return $ret;
+    }
+
+    /**
+     * @return Article[] Returns an array of Article objects
+     */
+    public function findForTag4(): array {
+        $q = $this->createQueryBuilder('a')
+            ->distinct()
+            ->select('a.tag4')
+            ->where('a.tag4 is not null')
+            ->orderBy('a.tag4', 'ASC')
+            ->getQuery()
+            ->getArrayResult()
+        ;
+
+        $ret = [];
+        foreach ($q as $item) {
+            $ret[$item['tag4']] = $item['tag4'];
+        }
+        return $ret;
+    }
 
 
+    /**
+     * @return Article[] Returns an array of Article objects
+     */
+    public function findForTag5(): array {
+        $q = $this->createQueryBuilder('a')
+            ->distinct()
+            ->select('a.tag5')
+            ->where('a.tag5 is not null')
+            ->orderBy('a.tag5', 'ASC')
+            ->getQuery()
+            ->getArrayResult()
+        ;
+
+        $ret = [];
+        foreach ($q as $item) {
+            $ret[$item['tag5']] = $item['tag5'];
+        }
+        return $ret;
+    }
 
 
 

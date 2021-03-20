@@ -41,30 +41,40 @@ class ArticleType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        ///** @var ArticleRepository $articleRepo */
-        //$articleRepo = $options['articleRepo'];
-        //var_dump($this->ar->findForTag1());
-
-
-
         $builder
-            //->add('nom', TextType::class, ['' ])
+            ->add('nom', TextType::class, ['label'=>'Nom'])
             ->add('marque')
             ->add('ref1')
             ->add('ref2')
             ->add('description')
             ->add('quantite')
+            ->add('prix')
 
             ->add('tag1', ChoiceType::class, [
                 'choices' => $this->ar->findForTag1(),
-                //'choice_label' => function(Article $article) { return $article->getTag1(); },
-                //'multiple' => true
+                'required' => false,
             ])
 
-            ->add('tag2')
-            ->add('tag3')
-            ->add('tag4')
-            ->add('tag5')
+            ->add('tag2', ChoiceType::class, [
+                'choices' => $this->ar->findForTag2(),
+                'required' => false,
+            ])
+
+            ->add('tag3', ChoiceType::class, [
+                'choices' => $this->ar->findForTag3(),
+                'required' => false,
+            ])
+
+            ->add('tag4', ChoiceType::class, [
+                'choices' => $this->ar->findForTag4(),
+                'required' => false,
+            ])
+
+            ->add('tag5', ChoiceType::class, [
+                'choices' => $this->ar->findForTag5(),
+                'required' => false,
+            ])
+
             ->add('file', FileType::class, ['required' => false])
 
             ->add('save', SubmitType::class, ['label' => 'Créer Article'])

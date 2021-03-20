@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Annotation\Uploadable;
 use App\Annotation\UploadableField;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Integer;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -112,139 +113,143 @@ class Article
      */
     private $tag6;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $url;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $codeBarNumber;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $codeBarText;
+
+    /**
+     * @ORM\Column(type="integer", length=5, nullable=true)
+     */
+    private $typeCodeBar;
 
 
 
 
-    public function getId(): ?int
-    {
+
+
+    public function __toString() {
+        return $this->nom;
+    }
+
+    public function getId(): ?int {
         return $this->id;
     }
 
-    public function getNom(): ?string
-    {
+
+
+    public function getNom(): ?string {
         return $this->nom;
     }
-
-    public function setNom(string $nom): self
-    {
+    public function setNom(string $nom): self  {
         $this->nom = $nom;
-
         return $this;
     }
 
-    public function getRef1(): ?string
-    {
+
+
+    public function getRef1(): ?string {
         return $this->ref1;
     }
-
-    public function setRef1(?string $ref1): self
-    {
+    public function setRef1(?string $ref1): self {
         $this->ref1 = $ref1;
-
         return $this;
     }
 
-    public function getRef2(): ?string
-    {
+
+
+    public function getRef2(): ?string {
         return $this->ref2;
     }
-
-    public function setRef2(?string $ref2): self
-    {
+    public function setRef2(?string $ref2): self {
         $this->ref2 = $ref2;
-
         return $this;
     }
 
-    public function getDescription(): ?string
-    {
+
+
+    public function getDescription(): ?string {
         return $this->description;
     }
-
-    public function setDescription(?string $description): self
-    {
+    public function setDescription(?string $description): self {
         $this->description = $description;
-
         return $this;
     }
 
-    public function getMarque(): ?Marque
-    {
+
+
+
+    public function getMarque(): ?Marque {
         return $this->marque;
     }
-
-    public function setMarque(?Marque $marque): self
-    {
+    public function setMarque(?Marque $marque): self {
         $this->marque = $marque;
-
         return $this;
     }
 
-    public function getTag1(): ?string
-    {
+
+
+
+    public function getTag1(): ?string {
         return $this->tag1;
     }
-
-    public function setTag1(?string $tag1): self
-    {
+    public function setTag1(?string $tag1): self {
         $this->tag1 = $tag1;
-
         return $this;
     }
 
-    public function getTag2(): ?string
-    {
+
+
+
+    public function getTag2(): ?string {
         return $this->tag2;
     }
-
-    public function setTag2(?string $tag2): self
-    {
+    public function setTag2(?string $tag2): self {
         $this->tag2 = $tag2;
-
         return $this;
     }
 
-    public function getTag3(): ?string
-    {
+
+
+    public function getTag3(): ?string {
         return $this->tag3;
     }
-
-    public function setTag3(?string $tag3): self
-    {
+    public function setTag3(?string $tag3): self  {
         $this->tag3 = $tag3;
-
         return $this;
     }
 
-    public function getTag4(): ?string
-    {
+
+
+    public function getTag4(): ?string {
         return $this->tag4;
     }
-
-    public function setTag4(?string $tag4): self
-    {
+    public function setTag4(?string $tag4): self {
         $this->tag4 = $tag4;
-
         return $this;
     }
 
-    public function getTag5(): ?string
-    {
+
+
+    public function getTag5(): ?string {
         return $this->tag5;
     }
-
-    public function setTag5(?string $tag5): self
-    {
+    public function setTag5(?string $tag5): self {
         $this->tag5 = $tag5;
-
         return $this;
     }
 
-    public function __toString()
-    {
-        return $this->nom;
-    }
+
 
     public function getFilename(): ?string
     {
@@ -345,4 +350,40 @@ class Article
 
         return $this;
     }
+
+
+    public function getUrl(): string {
+        return $this->url;
+    }
+    public function setUrl(string $url): void {
+        $this->url = $url;
+    }
+
+
+
+
+    public function getCodeBarNumber(): int {
+        return $this->codeBarNumber;
+    }
+    public function setCodeBarNumber(int $codeBarNumber): void    {
+        $this->codeBarNumber = $codeBarNumber;
+    }
+
+    public function getTypeCodeBar(): int {
+        return $this->typeCodeBar;
+    }
+    public function setTypeCodeBar(int $typeCodeBar): void {
+        $this->typeCodeBar = $typeCodeBar;
+    }
+
+
+    public function getCodeBarText(): string {
+        return $this->codeBarText;
+    }
+    public function setCodeBarText(string $codeBarText): void {
+        $this->codeBarText = $codeBarText;
+    }
+
+
+
 }
