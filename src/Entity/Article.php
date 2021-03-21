@@ -133,6 +133,11 @@ class Article
      */
     private $typeCodeBar;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Stockage", inversedBy="articles")
+     */
+    private $stockage;
+
 
 
 
@@ -382,6 +387,18 @@ class Article
     }
     public function setCodeBarText(string $codeBarText): void {
         $this->codeBarText = $codeBarText;
+    }
+
+    public function getStockage(): ?Stockage
+    {
+        return $this->stockage;
+    }
+
+    public function setStockage(?Stockage $stockage): self
+    {
+        $this->stockage = $stockage;
+
+        return $this;
     }
 
 
