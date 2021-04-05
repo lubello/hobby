@@ -1,0 +1,14 @@
+
+{% block checkbox_widget %}
+    {% spaceless %}
+    <div class="form-check">
+        <label for="{{ id }}" class="form-check-label">
+            <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+            {{ label|trans({}, translation_domain) }}
+            <span class="form-check-sign">
+                <span class="check"></span>
+            </span>
+        </label>
+    </div>
+    {% endspaceless %}
+{% endblock checkbox_widget %}

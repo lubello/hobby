@@ -1,35 +1,47 @@
 
+
 <div class="card">
-    <div class="card-header">
-        <div class="card-title text-primary"> {{ article.marque}} &nbsp; <span class="card-category"> {{ article.ref1}} &nbsp; &nbsp;  {{ article.ref2}} </span> </div>
-        <div class="card-category"></div>
-    </div>
-
-    {% if (cardLight == false ) %}
-    <img class="card-img-top" src="{{ asset(article.file |trans) }}" alt="">
-
     <div class="card-body">
-        <div class="card-title"> {{ article.nom }} </div>
-        <div class="card-title">
-            {{ article.tag1 }}
-            {% if article.tag2|length %},&nbsp; {% endif %} {{ article.tag2 }}
-            {% if article.tag3|length %},&nbsp; {% endif %} {{ article.tag3 }}
-            {% if article.tag4|length %},&nbsp; {% endif %} {{ article.tag4 }}
-            {% if article.tag5|length %},&nbsp; {% endif %} {{ article.tag5 }}
-            {% if article.tag6|length %},&nbsp; {% endif %} {{ article.tag6 }}
-        </div>
-        
-        <p class="card-title text-muted"> {{ article.description }}</p>
-    </div>
 
-    <div class="card-footer card-title-right">
-        <div>
-            <a class="btn btn-primary btn-sm" target="_blank" href="{{ path('article_edit', {'id': article.id}) }}">edit</a>
-            <div class="btn btn-info btn-sm btn-facebook article-qt-down" data-id="{{article.id}}" data-href="{{ path('article_qtUpDown', {'id': article.id, 'type': 'down'}) }}">-</div>
-            <label id="article-qt-{{article.id}}" class="rounded-pill">{{ article.quantite}}</label>
-            <div class="btn btn-info btn-sm btn-facebook article-qt-up"   data-id="{{article.id}}" data-href="{{ path('article_qtUpDown', {'id': article.id, 'type': 'up'}) }}">+</div>
+        <div class="card-title text-primary">
+            <h4 class="text-primary"> {{ article.marque}} &nbsp;
+            <span class="card-category"> {{ article.ref1}} &nbsp; &nbsp;  {{ article.ref2}} </span>  </h4>
         </div>
-    </div>
-    {% endif %}
+        <div class="card-title text-primary">
+            <h4 class="card-title"> {{ article.nom }} </h4>
+        </div>
 
+        {% if (cardLight == false ) %}
+            <a href="{{ asset(article.file |trans) }}">
+                <img class="card-img-top" src="{{ asset(article.file |trans) }}" alt="">
+            </a>
+
+            {% if article.description != null %}
+                <div class="card-category">  {{ article.description }} </div>
+            {% endif %}
+
+            <div class="card-title">
+                <span class="badge badge-pill badge-dark">{{ article.tag1 }}</span>
+                <span class="badge badge-pill badge-dark">{{ article.tag2 }}</span>
+                <span class="badge badge-pill badge-dark">{{ article.tag3 }}</span>
+                <span class="badge badge-pill badge-dark">{{ article.tag4 }}</span>
+                <span class="badge badge-pill badge-dark">{{ article.tag5 }}</span>
+                <span class="badge badge-pill badge-dark">{{ article.tag6 }}</span>
+            </div>
+
+            <div class="card-title text-muted"> {{ article.description }} </div>
+
+
+            <div class="card-footer card-title-right">
+                <div>
+                    <a class="btn btn-primary btn-xs" target="_blank" href="{{ path('article_edit', {'id': article.id}) }}">edit</a>
+                    <div class="btn btn-info btn-sm  article-qt-down" data-id="{{article.id}}" data-href="{{ path('article_qtUpDown', {'id': article.id, 'type': 'down'}) }}">-</div>
+                    <label id="article-qt-{{article.id}}" class="rounded-pill">{{ article.quantite}}</label>
+                    <div class="btn btn-info btn-sm article-qt-up"   data-id="{{article.id}}" data-href="{{ path('article_qtUpDown', {'id': article.id, 'type': 'up'}) }}">+</div>
+                </div>
+            </div>
+        {% endif %}
+
+    </div>
 </div>
+

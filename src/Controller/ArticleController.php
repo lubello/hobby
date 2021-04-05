@@ -25,8 +25,7 @@ class ArticleController extends AbstractController
      */
     private $articleRepository;
 
-    public function __construct(ArticleRepository $articleRepository)
-    {
+    public function __construct(ArticleRepository $articleRepository) {
         $this->articleRepository = $articleRepository;
     }
 
@@ -36,19 +35,18 @@ class ArticleController extends AbstractController
      * @param PaginatorInterface $paginator
      * @return Response
      */
-    public function index(Request $request, PaginatorInterface $paginator): Response
-    {
+    public function index(Request $request, PaginatorInterface $paginator): Response {
 
          /** @var ArticleSearchDto $search */
          $search = new ArticleSearchDto();
          $search->page = $request->get('page', 1);
-         $search->limitPerPage = $request->get('limitPerPage', 30);
+         $search->limitPerPage = $request->get('limitPerPage', 50);
          
         $articles = $this->articleRepository->search($search);
 
         return $this->render('article/index.html.twig', [
             'articles'  => $articles,
-            'paginator' => $paginator,  //pas utilisé
+            //'paginator' => $paginator,  //pas utilisé
         ]);
     }
 
@@ -105,7 +103,7 @@ class ArticleController extends AbstractController
         /** @var ArticleSearchDto $search */
         $search = new ArticleSearchDto();
         $search->page = $request->get('page', 1);
-        $search->limitPerPage = $request->get('limitPerPage', 30);
+        $search->limitPerPage = $request->get('limitPerPage', 50);
 
         $form = $this->createForm(ArticleSearchType::class, $search);
         $form->handleRequest($request);

@@ -8,26 +8,7 @@ Article index
     <h1> Article index </h1>
 
     <div class="row">
-        <div class="col-md-1">
-
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">Active</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Disabled</a>
-                </li>
-            </ul>
-
-        </div>
-
-        <div class="col-md-11">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
                     <div class="tools float-right">
@@ -55,13 +36,12 @@ Article index
                     <table class="table tablesorter tablesorter-default table-hover" role="grid">
                         <thead>
                         <tr>
+                            <th> Id </th>
                             <th class="text-center">Image</th>
-                            <th>Nom</th>
-                            <th>Ref1 / Ref2</th>
-                            <th>Description</th>
-                            <th>Tag1 / Tag2</th>
-                            <th>Tag3 / Tag4</th>
-                            <th>Tag5</th>
+                            <th> Nom </th>
+                            <th> Marque </th>
+                            <th> Description </th>
+                            <th> Tags </th>
                             <th class="text-center">actions</th>
                         </tr>
                         </thead>
@@ -69,34 +49,50 @@ Article index
                         {% for article in articles %}
                             <tr class="">
                                 <td>
+                                    <div> {{ article.id }} </div>
+                                </td>
+                                <td>
                                     <div class="img-container">
                                         <a href="{{ asset(article.file |trans) }}" target="_blank">
                                         <img   src="{{ asset(article.file |trans) }}" alt="..." width="100">
                                         </a>
                                     </div>
                                 </td>
+
                                 <td class="td-name">
-                                    <div>ID: {{ article.id }}</div>
-                                    <div>{{ article.nom }}</div>
+
+                                    <div class="text-primary"> {{ article.nom }} </div>
+                                    <div class="text-info"> {{ article.marque }} </div>
+                                    <div class=""> {{ article.ref1 }} </div>
+                                    <div class=""> {{ article.ref2 }} </div>
                                 </td>
-                                <td class="">
-                                    <div class="">{{ article.ref1 }}</div>
-                                    <div class="">{{ article.ref2 }}</div>
-                                </td>
-                                <td class="">{{ article.description }}</td>
 
                                 <td class="">
-                                    <div class="">{{ article.tag1 }}</div>
-                                    <div class="">{{ article.tag2 }}</div>
+                                    {{ article.marque }}
                                 </td>
+
                                 <td class="">
-                                    <div class="btn-sm">{{ article.tag1 }}</div>
-                                    <div class="btn-sm">{{ article.tag2 }}</div>
+                                    {{ article.description }}
                                 </td>
-                                <td class="">{{ article.tag5 }}</td>
+
+                                <td class="">
+                                    <div class="">
+                                        <span class="badge badge-pill badge-info">{{ article.tag1 }}</span>
+                                        <span class="badge badge-pill badge-info">{{ article.tag2 }}</span>
+                                    </div>
+                                    <div class="">
+                                        <span class="badge badge-pill badge-info">{{ article.tag3 }}</span>
+                                        <span class="badge badge-pill badge-info">{{ article.tag4 }}</span>
+                                    </div>
+                                    <div class="">
+                                        <span class="badge badge-pill badge-info">{{ article.tag5 }}</span>
+                                        <span class="badge badge-pill badge-info">{{ article.tag6 }}</span>
+                                    </div>
+
+                                </td>
                                 <td class="td-actions text-center">
-                                    <a class="btn btn-primary btn-sm btn-round" href="{{ path('article_show', {'id': article.id}) }}">show</a>
-                                    <a class="btn btn-primary btn-sm btn-round" href="{{ path('article_edit', {'id': article.id}) }}">edit</a>
+                                    <div> <a class="btn btn-primary btn-sm --btn-round" href="{{ path('article_show', {'id': article.id}) }}">show</a> </div>
+                                    <div> <a class="btn btn-primary btn-sm --btn-round" href="{{ path('article_edit', {'id': article.id}) }}">edit</a> </div>
                                 </td>
                             </tr>
                         {% else %}
