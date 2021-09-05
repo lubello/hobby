@@ -50,3 +50,4 @@ services:
         arguments: ["@upload.annotation_reader", "@upload.handler"]
         tags:
             {name: doctrine.event_subscriber, connection: default }
+
