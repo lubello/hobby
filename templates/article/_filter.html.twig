@@ -27,8 +27,157 @@
     {{ form_row(form.tag) }}
     {{ form_row(form.ref) }}
 
+
+
+    <div class="form-group">
+        <label>aaaaa</label>
+        <input id="autoComplete" class="selection form-control" type="search" dir="ltr" spellcheck=false autocorrect="off" autocomplete="off" autocapitalize="off">
+    </div>
+
+    <div class="form-group">
+        <select class="qqqjs-example-basic-single form-control" name="state">
+            <option value="AL">Alabama</option>
+            <option value="WY">W yoming</option>
+            <option value="WY">Wy oming</option>
+            <option value="WY">Wyo ming</option>
+            <option value="WY">Wyomi ng</option>
+            <option value="WY">Wyom ing</option>
+            <option value="WY">Wyomin g</option>
+        </select>
+    </div>
+
+<div class="form-group">
+    <label> Select2 Ajax </label>
+    <select class="js-example-data-ajax form-control" name="state">
+    </select>
+</div>
+
+
     <div>
-        <button type="submit" class="btn btn-primary w-100">Filtrer</button>
+        <button type="submit" class="btn btn-primary w-100"> Filtrer </button>
     </div>
 
 {{ form_end(form)}}
+
+<script src="https://code.jquery.com/jquery-3.6.0.js"  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="  crossorigin="anonymous"> </script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"> </script>
+
+<script>
+    const autoCompleteJS = new autoComplete({
+        placeHolder: "Search for Food & Drinks!",
+        data: {
+            src: async (query) => {
+                try {
+                    // Fetch Data from external Source
+                    const source = await fetch(`http://www.hobby.localhost/article/search?query=${query}`);
+                    // Data is array of `Objects` | `Strings`
+                    const data = await source.json();
+
+                    // Post Loading placeholder text
+                    document
+                        .getElementById("autoComplete")
+                        .setAttribute("placeholder", autoCompleteJS.placeHolder);
+                    // Returns Fetched data
+                    return data;
+
+                } catch (error) {
+                    return error;
+                }
+            },
+            // Data 'Object' key to be searched
+            keys: ["food", "cities", "animals"],
+            cache: true,
+        },
+        resultsList: {
+            element: (list, data) => {
+                const info = document.createElement("p");
+                if (data.results.length > 0) {
+                    info.innerHTML = `Displaying <strong>${data.results.length}</strong> out of <strong>${data.matches.length}</strong> results`;
+                } else {
+                    info.innerHTML = `Found <strong>${data.matches.length}</strong> matching results for <strong>"${data.query}"</strong>`;
+                }
+                list.prepend(info);
+            },
+            noResults: true,
+            maxResults: 15,
+            tabSelect: true
+        },
+        resultItem: {
+            element: (item, data) => {
+                // Modify Results Item Style
+                item.style = "display: flex; justify-content: space-between;";
+                // Modify Results Item Content
+                item.innerHTML = `
+      <span style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">
+        ${data.match} ff
+      </span>
+      <span style="display: flex; align-items: center; font-size: 13px; font-weight: 100; text-transform: uppercase; color: rgba(0,0,0,.2);">
+        ${data.key}
+      </span>`;
+            },
+            highlight: true
+        },
+        events: {
+            input: {
+                focus: () => {
+                    if (autoCompleteJS.input.value.length) autoCompleteJS.start();
+                }
+            }
+        }
+    });
+
+    autoCompleteJS.input.addEventListener("selection", function (event) {
+        const feedback = event.detail;
+        autoCompleteJS.input.blur();
+        // Prepare User's Selected Value
+        const selection = feedback.selection.value[feedback.selection.key];
+        // Render selected choice to selection div
+        document.querySelector(".selection").innerHTML = selection;
+        // Replace Input value with the selected value
+        autoCompleteJS.input.value = selection;
+        // Console log autoComplete data feedback
+        console.log(feedback);
+    });
+
+
+
+    $("document").ready(function(){
+        $(".js-example-data-ajax").select2();
+    });
+
+
+    $(".js-example-data-ajax").select2({
+        ajax: {
+            url: "https://api.github.com/search/repositories",
+            dataType: 'json',
+            delay: 250,
+            data: function (params) {
+                return {
+                    q: params.term, // search term
+                    page: params.page
+                };
+            },
+            processResults: function (data, params) {
+                // parse the results into the format expected by Select2
+                // since we are using custom formatting functions we do not need to
+                // alter the remote JSON data, except to indicate that infinite
+                // scrolling can be used
+                params.page = params.page || 1;
+
+                return {
+                    results: data.items,
+                    pagination: {
+                        more: (params.page * 30) < data.total_count
+                    }
+                };
+            },
+            cache: true
+        },
+        placeholder: 'Search for a repository',
+        minimumInputLength: 1
+        //templateResult: formatRepo,
+        //templateSelection: formatRepoSelection
+    });
+
+
+</script>

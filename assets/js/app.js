@@ -9,21 +9,17 @@
 
 // any CSS you require will output into a single css file (app.css in this case)
 require('../css/app.css');
-
 require('../css/black-dashboard.css');
-//require('../css/nucleo-icons.css');
-//require('../css/custom.css');
+require('../css/nucleo-icons.css');
 
 require('../js/core/jquery.min.js');
 require('../js/core/popper.min.js');
 require('../js/core/bootstrap.min.js');
-//require('../js/custom.min.js');
-
-//require('../js/black-dashboard.js');
+require('../js/black-dashboard.js');
 
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
-const $ = require('jquery'); 
+//const $ = require('jquery');
 
 console.log('Hello Webpack Encore! Edit me in assets/js/app.js');
 

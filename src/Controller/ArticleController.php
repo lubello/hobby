@@ -10,6 +10,7 @@ use App\Repository\ArticleRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use App\Reports\SalesByCustomer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -40,7 +41,7 @@ class ArticleController extends AbstractController
          /** @var ArticleSearchDto $search */
          $search = new ArticleSearchDto();
          $search->page = $request->get('page', 1);
-         $search->limitPerPage = $request->get('limitPerPage', 50);
+         $search->limitPerPage = $request->get('limitPerPage', 10);
          
         $articles = $this->articleRepository->search($search);
 
@@ -100,7 +101,6 @@ class ArticleController extends AbstractController
     {
         $cardLight = $request->get('light', false);
 
-        /** @var ArticleSearchDto $search */
         $search = new ArticleSearchDto();
         $search->page = $request->get('page', 1);
         $search->limitPerPage = $request->get('limitPerPage', 50);
@@ -202,5 +202,36 @@ class ArticleController extends AbstractController
         $response->headers->set('Content-Type', 'text/plain; charset=utf-8');
         //var_dump($response);
         return $response;
+    }
+
+
+    /**
+     * @Route("/search", name="article_show", methods={"GET"})
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function search(Request $request): JsonResponse
+    {
+        $query = $request->get('query', null);
+
+        $array = [
+            [
+                "food"    => "1 Sauce - Thousand Island",
+                "cities"  => "Soanindrariny",
+                "animals" => "Common boubou shrike"
+            ],
+            [
+                "food"    => "2 Flour - Masa De Harina Mexican",
+                "cities"  => "Magoúla",
+                "animals" => "Black-backed magpie"
+            ],
+            [
+                "food"    => "3 sdfdsfsdfsd",
+                "cities"  => "Soanindrariny",
+                "animals" => "Commsdfsdf sdfsdfon boubou shrike"
+            ]
+        ];
+
+        return $this->json($array);
     }
 }
