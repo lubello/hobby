@@ -1,10 +1,28 @@
 {% form_theme form.marques 'fields.html.twig' %}
 
 {{ form_start(form, { attr: {class: '--article-filter'}}) }}
-    
-    <sdiv>
+
+    <table>
+        <thead></thead>
+        <tbody>
+            {% for list in form.liste %}
+                <tr>
+                    <td> {{ form_row(list.tag1) }} </td>
+                    <td> {{ form_row(list.tag2) }} </td>
+                    <td> {{ form_row(list.tag3) }} </td>
+                    <td> {{ form_row(list.tag4) }} </td>
+                    <td> {{ form_row(list.tag5) }} </td>
+                    <td> {{ form_row(list.tag6) }} </td>
+                    <td> {{ list.total.vars.value }} </td>
+                    <td hidden> {{ form_row(list.total) }} </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div>
         <button type="submit" class="btn btn-primary w-100">Filtrer</button>
-    </sdiv>
+    </div>
 
     <h4>Recherche</h4>
 

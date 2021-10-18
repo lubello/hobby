@@ -29,12 +29,20 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-md-12">
+            {%  include 'article/_filter.html.twig' with {form: form} only %}
+        </div>
+    </div>
+    <div> sdfsdfdsfsdfsdfsd fsdfdsfdsf sdf sd fsdfsdfsdfsd fsdfsdf sdfsdf </div>
     <div class="containerrrrrrr">
         <div class="row">
+            {#
             <div class="col-md-2">
                 {%  include 'article/_filter.html.twig' with {form: form} only %}
              </div>
-            <div class="col-md-10">
+            #}
+            <div class="col-md-12">
                 {# total items count #}
                     <div class="count">
                         Total rows: {{ articles.getTotalItemCount }}

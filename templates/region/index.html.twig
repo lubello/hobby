@@ -11,16 +11,16 @@
     <table class="table table-hover table-condensed">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>actions</th>
+                <th style="width: 10%">Id</th>
+                <th >Nom</th>
+                <th style="width: 20%">actions</th>
             </tr>
         </thead>
         <tbody>
         {% for region in regions %}
             <tr>
                 <td>{{ region.id }}</td>
-                <td>{{ region.nom }}</td>
+                <td class="text-left">{{ region.nom }}</td>
                 <td>
                     <a class="btn btn-primary btn-sm btn-info" href="{{ path('region_show', {'id': region.id}) }}">show</a>
                     <a class="btn btn-primary btn-sm btn-primary" href="{{ path('region_edit', {'id': region.id}) }}">edit</a>

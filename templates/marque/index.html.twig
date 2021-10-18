@@ -6,23 +6,27 @@
     <h1>Marque index</h1>
 
     <div class="col col-md-12">
-    <a class="btn btn-primary btn-sm btn-primary" href="{{ path('marque_new') }}">Create new <span class="badge badge-pill badge-default">4</span></a>
+    <a class="btn btn-primary btn-sm btn-primary" href="{{ path('marque_new') }}"> Create new </a>
 
-    <table class="table table-hover table-condenseddddd">
+    <table class="table table-hover table-condenseddddd" id="table_id">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Nom</th>
                 <th>Description</th>
-                <th>Filename</th>
                 <th> File </th>
-                <th> UpdatedAt </th>
-                <th> DeletedAt </th>
-                <th> UpdatedBy </th>
-                <th> DeletedBy </th>
-                <th> Tag1/Tag2 </th>
-                <th> Tag3/Tag4 </th>
-                <th> Tag5 </th>
+                <th>
+                    <div> CreatedAt </div>
+                    <div> UpdatedAt </div>
+                    <div> DeletedAt </div>
+                </th>
+                <th>
+                    <div> CreatedBy </div>
+                    <div> UpdatedBy </div>
+                    <div> DeletedBy </div>
+                </th>
+                <th> Tag1/Tag2/tag3 </th>
+                <th> Tag4/Tag5/tag6 </th>
                 <th> Quick Find </th>
                 <th> actions </th>
             </tr>
@@ -34,17 +38,36 @@
                 <td> {{ marque.id }} </td>
                 <td> {{ marque.nom }} </td>
                 <td> {{ marque.description }} </td>
-                <td> {{ marque.filename }} </td>
-                <td> <img src="{{ asset(marque.file |trans) }}" alt="" width="100"> </td>
-                <td> {{ marque.updatedAt ? marque.updatedAt|date('Y-m-d H:i:s') : '' }} </td>
-                <td> {{ marque.deletedAt ? marque.deletedAt|date('Y-m-d H:i:s') : '' }} </td>
-                <td> {{ marque.updatedBy }} </td>
-                <td> {{ marque.deletedBy }} </td>
-                <td> {{ marque.tag1 }} <br>{{ marque.tag2 }} </td>
-                <td> {{ marque.tag3 }} <br/> {{ marque.tag4 }} </td>
-                <td> {{ marque.tag5 }} </td>
+                <td title="{{ marque.siteWeb ? 'Clickez pour accéder au site web' : 'lien vers le site inexistant' }}">
+                    <a href="{{ marque.siteWeb ? marque.siteWeb : '#' }}" target="_blank">
+                        <img src="{{ asset(marque.file |trans) }}" alt="" width="70">
+                    </a>
+                </td>
                 <td>
-                <a class="" href="{{ path('article_gallery', {'q': '', 'marques[]=' : marque.id, 'tag': marque.tag1}) }}">find tag1</a>
+                    <div> {{ marque.createdAt ? marque.createdAt|date('Y-m-d H:i:s') : '--' }} </div>
+                    <div> {{ marque.updatedAt ? marque.updatedAt|date('Y-m-d H:i:s') : '--' }} </div>
+                    <div> {{ marque.deletedAt ? marque.deletedAt|date('Y-m-d H:i:s') : '--' }} </div>
+                </td>
+                <td>
+                    <div> {{ marque.createdBy ? marque.createdBy : '--' }} </div>
+                    <div> {{ marque.updatedBy ? marque.updatedBy : '--' }} </div>
+                    <div> {{ marque.deletedBy ? marque.deletedBy : '--' }} </div>
+                </td>
+                <td>
+                    <div> {{ marque.tag1 ? marque.tag1 : '--' }} </div>
+                    <div> {{ marque.tag2 ? marque.tag2 : '--'  }} </div>
+                    <div> {{ marque.tag3 ? marque.tag3 : '--'  }} </div>
+                </td>
+                <td>
+                    <div> {{ marque.tag4 ? marque.tag4 : '--'  }} </div>
+                    <div> {{ marque.tag5 ? marque.tag5 : '--'  }} </div>
+                    <div> -- </div>
+                    <div>  </div>
+                </td>
+                <td>
+                    <div> {{ marque.articles|length }} articles </div>
+                    <div> <a class="" href="{{ path('article_gallery', {'q': '', 'marques[]=' : marque.id, 'tag': marque.tag1}) }}"> find tag1 </a> </div>
+                    <div> &nbsp; </div>
                 </td>
                  <td>
                     <a class="btn btn-primary btn-sm btn-info" href="{{ path('marque_show', {'id': marque.id}) }}"> show </a>
@@ -62,4 +85,14 @@
     <a class="btn btn-primary btn-sm btn-primary" href="{{ path('marque_new') }}">Create new</a>
     </div>
 
+{% endblock %}
+
+
+{% block javascript_custom %}
+    <script>
+        console.log('from block javascript_custom ')
+        $(document).ready( function () {
+            $('#table_id').DataTable();
+        });
+    </script>
 {% endblock %}

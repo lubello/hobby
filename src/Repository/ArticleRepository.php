@@ -196,4 +196,17 @@ class ArticleRepository extends ServiceEntityRepository
             return null;
         }
     }
+
+
+
+    public function findaaaa(): array {
+        $q = $this->createQueryBuilder('a')
+            ->select('a.tag1, a.tag2, a.tag3, a.tag4, a.tag5, a.tag6, count(a.id) as total')
+            ->orderBy('a.tag1, a.tag2, a.tag3, a.tag4, a.tag5, a.tag6')
+            ->groupBy('a.tag1, a.tag2, a.tag3, a.tag4, a.tag5, a.tag6')
+            ->getQuery()
+            ->getArrayResult();
+        return $q;
+    }
+
 }

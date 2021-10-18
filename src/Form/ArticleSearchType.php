@@ -11,6 +11,7 @@ use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -22,6 +23,13 @@ class ArticleSearchType extends  AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('liste', CollectionType::class, [
+                'entry_type'    => TagDtoType::class,
+                'entry_options' => ['label' => false],
+                'allow_add'     => false,
+                'label'         => false,
+                'required'      => false,
+            ])
             ->add('q', TextType::class, [
                 'label' => false,
                 'required' => false,
@@ -41,9 +49,7 @@ class ArticleSearchType extends  AbstractType
                 },
 
                 'query_builder' => function (EntityRepository $er) {
-                    return $er//->findAllUsedInArticles();
-                        ->createQueryBuilder('m')
-                        //->select('m')
+                    return $er->createQueryBuilder('m')
                         ->innerJoin('m.articles', 'a')
                         ->orderBy('m.nom', 'ASC');
                 },

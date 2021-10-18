@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Common\dto\TagsDto;
 use App\Entity\Article;
 use App\Entity\Dto\ArticleSearchDto;
 use App\Form\ArticleSearchType;
@@ -38,8 +39,7 @@ class ArticleController extends AbstractController
      */
     public function index(Request $request, PaginatorInterface $paginator): Response {
 
-         /** @var ArticleSearchDto $search */
-         $search = new ArticleSearchDto();
+        $search = new ArticleSearchDto();
          $search->page = $request->get('page', 1);
          $search->limitPerPage = $request->get('limitPerPage', 10);
          
@@ -104,6 +104,13 @@ class ArticleController extends AbstractController
         $search = new ArticleSearchDto();
         $search->page = $request->get('page', 1);
         $search->limitPerPage = $request->get('limitPerPage', 50);
+
+        // get tags grouped
+        $liste = $this->articleRepository->findaaaa();
+        foreach ($liste as $list) {
+            $search->liste[] = new TagsDto($list['tag1'], $list['tag2'], $list['tag3'], $list['tag4'], $list['tag5'], $list['tag6'], $list['total']);
+            //var_dump($list['tag1'].' - '.$list['tag2'].PHP_EOL.'<br/>');
+        }
 
         $form = $this->createForm(ArticleSearchType::class, $search);
         $form->handleRequest($request);

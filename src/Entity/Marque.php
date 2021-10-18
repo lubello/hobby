@@ -98,12 +98,11 @@ class Marque
      */
     private $ville;
 
+
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $filename;
-
-
     /**
      * @UploadableField(name="filename", path="Uploads/Marque")
      * @Assert\Image(maxHeight="4000", maxWidth="4000")
@@ -111,109 +110,92 @@ class Marque
     private $file;
 
 
+    /**
+     * @ORM\Column(type="string", length=512, nullable=true)
+     */
+    private $siteWeb;
 
 
-    public function __construct()
-    {
+
+    public function __construct() {
         $this->articles = new ArrayCollection();
         $this->setCreatedAt(new \DateTime());
         $this->setCreatedBy(0);
     }
 
-    public function getId(): ?int
-    {
+    public function getId(): ?int {
         return $this->id;
     }
 
-    public function getNom(): ?string
-    {
+
+    public function getNom(): ?string {
         return $this->nom;
     }
-
-    public function setNom(string $nom): self
-    {
+    public function setNom(string $nom): self {
         $this->nom = $nom;
-
         return $this;
     }
 
-    public function getDescription(): ?string
-    {
+
+    public function getDescription(): ?string {
         return $this->description;
     }
-
-    public function setDescription(?string $description): self
-    {
+    public function setDescription(?string $description): self {
         $this->description = $description;
-
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
-    {
+
+    public function getCreatedAt(): ?\DateTimeInterface {
         return $this->createdAt;
     }
-
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
-    {
+    public function setCreatedAt(\DateTimeInterface $createdAt): self {
         $this->createdAt = $createdAt;
-
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeInterface
-    {
+
+
+    public function getUpdatedAt(): ?\DateTimeInterface {
         return $this->updatedAt;
     }
-
-    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
-    {
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self {
         $this->updatedAt = $updatedAt;
-
         return $this;
     }
 
-    public function getDeletedAt(): ?\DateTimeInterface
-    {
+
+    public function getDeletedAt(): ?\DateTimeInterface {
         return $this->deletedAt;
     }
-
-    public function setDeletedAt(?\DateTimeInterface $deletedAt): self
-    {
+    public function setDeletedAt(?\DateTimeInterface $deletedAt): self {
         $this->deletedAt = $deletedAt;
-
         return $this;
     }
 
-    public function getCreatedBy(): ?int
-    {
+
+    public function getCreatedBy(): ?int {
         return $this->createdBy;
     }
-
-    public function setCreatedBy(int $createdBy): self
-    {
+    public function setCreatedBy(int $createdBy): self {
         $this->createdBy = $createdBy;
-
         return $this;
     }
 
-    public function getUpdatedBy(): ?int
-    {
+
+    public function getUpdatedBy(): ?int {
         return $this->updatedBy;
     }
-
-    public function setUpdatedBy(?int $updatedBy): self
-    {
+    public function setUpdatedBy(?int $updatedBy): self {
         $this->updatedBy = $updatedBy;
-
         return $this;
     }
+
 
     public function getDeletedBy(): ?int
     {
         return $this->deletedBy;
     }
-
     public function setDeletedBy(?int $deletedBy): self
     {
         $this->deletedBy = $deletedBy;
@@ -358,4 +340,16 @@ class Marque
     {
         $this->file = $file;
     }
+
+
+
+    public function getSiteWeb(): ?string {
+        return $this->siteWeb;
+    }
+    public function setSiteWeb(?string $siteWeb): self {
+        $this->siteWeb = $siteWeb;
+        return $this;
+    }
+
+
 }

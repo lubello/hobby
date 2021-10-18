@@ -5,6 +5,7 @@ namespace App\Entity\Dto;
 
 
 use App\Entity\Marque;
+use App\Form\TagDtoType;
 
 class ArticleSearchDto
 {
@@ -13,7 +14,7 @@ class ArticleSearchDto
     /**
      * @var string
      */
-    public $q;
+    public $q= 'o';
 
     /**
      * @var Marque[]
@@ -59,6 +60,10 @@ class ArticleSearchDto
      */
     public $ref;
 
+    /**
+     * @var TagDtoType[]
+     */
+    public $liste;
 
     public function __construct() { }
 
