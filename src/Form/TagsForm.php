@@ -8,32 +8,32 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class TagDtoType extends  AbstractType
+class TagsForm extends  AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('tag1', TextType::class, [
+            ->add('tag1', TagForm::class, [
                 'label'         => false,   // 'tag1',
                 'required'      => false,
             ])
-            ->add('tag2', TextType::class, [
+            ->add('tag2', TagForm::class, [
                 'label'         =>  false,   // 'tag2',
                 'required'      => false,
             ])
-            ->add('tag3', TextType::class, [
+            ->add('tag3', TagForm::class, [
                 'label'         =>  false,   // 'tag3',
                 'required'      => false,
             ])
-            ->add('tag4', TextType::class, [
+            ->add('tag4', TagForm::class, [
                 'label'         =>  false,   // 'tag4',
                 'required'      => false,
             ])
-            ->add('tag5', TextType::class, [
+            ->add('tag5', TagForm::class, [
                 'label'         =>  false,   // 'tag5',
                 'required'      => false,
             ])
-            ->add('tag6', TextType::class, [
+            ->add('tag6', TagForm::class, [
                 'label'         =>  false,   // 'tag6',
                 'required'      => false,
             ])

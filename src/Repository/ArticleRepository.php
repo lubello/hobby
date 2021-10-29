@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Common\dto\TagsDto;
 use App\Entity\Article;
 use App\Entity\Dto\ArticleSearchDto;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -137,6 +138,63 @@ class ArticleRepository extends ServiceEntityRepository
     }
 
 
+
+    public function searchByTags(TagsDto $dto) : ?PaginationInterface
+    {
+        try {
+            $q = $this
+                ->createQueryBuilder('a')
+                ->innerJoin('a.marque', 'm')
+                ->select('a');
+
+            if ($dto->getTag1() != '')
+                $q = $q->andWhere('a.tag1 like :tag1')->setParameter('tag1', "%{$dto->getTag1()}%");
+            else
+                $q = $q->andWhere('a.tag1 is null');
+
+            if ($dto->getTag2() != '')
+                $q = $q->andWhere('a.tag2 like :tag2')->setParameter('tag2', "%{$dto->getTag2()}%");
+            else
+                $q = $q->andWhere('a.tag2 is null');
+
+            if ($dto->getTag3() != '')
+                $q = $q->andWhere('a.tag3 like :tag3')->setParameter('tag3', "%{$dto->getTag3()}%");
+            else
+                $q = $q->andWhere('a.tag3 is null');
+
+            if ($dto->getTag4() != '')
+                $q = $q->andWhere('a.tag4 like :tag4')->setParameter('tag4', "%{$dto->getTag4()}%");
+            else
+                $q = $q->andWhere('a.tag4 is null');
+
+            if ($dto->getTag5() != '')
+                $q = $q->andWhere('a.tag5 like :tag5')->setParameter('tag5', "%{$dto->getTag5()}%");
+            else
+                $q = $q->andWhere('a.tag5 is null');
+
+            if ($dto->getTag6() != '')
+                $q = $q->andWhere('a.tag6 like :tag6')->setParameter('tag6', "%{$dto->getTag6()}%");
+            else
+                $q = $q->andWhere('a.tag6 is null');
+
+
+            $q = $q->orderBy('a.nom');
+
+            //die($q->getQuery()->getDQL());
+
+            $pagination = $this->paginator->paginate(
+                $q, /* query NOT result */
+                1,  /*page number*/
+                20  /*limit per page*/
+            );
+
+            return $pagination;
+
+        } catch (NonUniqueResultException $e) {
+            return null;
+        }
+
+    }
 
     public function search(ArticleSearchDto $dto) : ?PaginationInterface
     {

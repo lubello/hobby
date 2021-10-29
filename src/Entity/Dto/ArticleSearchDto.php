@@ -4,6 +4,7 @@
 namespace App\Entity\Dto;
 
 
+use App\Common\dto\TagsDto;
 use App\Entity\Marque;
 use App\Form\TagDtoType;
 
@@ -61,7 +62,7 @@ class ArticleSearchDto
     public $ref;
 
     /**
-     * @var TagDtoType[]
+     * @var TagsDto[]
      */
     public $liste;
 

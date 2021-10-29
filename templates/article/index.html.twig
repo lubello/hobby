@@ -27,15 +27,27 @@ Article index
                     <h4 class="card-title">Articles</h4>
                 
                 <div class="navigation">
+                    {{ articles.getTotalItemCount }}
                     {{ knp_pagination_render(articles) }}
                 </div>
 
                 </div>
                 <div class="card-body table-full-width">
 
+                    {% set light = false %}
+                    {% if gridLight|default(false) %}
+                        {% set light = true %}
+                    {% endif %}
+
                     <table class="table tablesorter tablesorter-default table-hover" role="grid">
-                        <thead>
-                        <tr>
+                    <thead>
+                    <tr>
+                        {% if light %}
+                            <th> Ref. </th>
+                            <th> Nom </th>
+                            <th> Marque </th>
+                            <th> Tags </th>
+                        {% else %}
                             <th> Id </th>
                             <th class="text-center">Image</th>
                             <th> Nom </th>
@@ -43,24 +55,51 @@ Article index
                             <th> Description </th>
                             <th> Tags </th>
                             <th class="text-center">actions</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for article in articles %}
-                            <tr class="">
+                        {% endif %}
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for article in articles %}
+                        <tr class="">
+                            {% if light %}
+
+                                <td>
+                                    <div> {{ article.ref1 }} {{ article.ref2 }} </div>
+                                </td>
+
+                                <td class="td-name">
+                                    <div class="text-primary"> {{ article.nom }} </div>
+                                </td>
+
+                                <td class="">
+                                    {{ article.marque }}
+                                </td>
+
+                                <td class="">
+                                    <div class="">
+                                        <span class="badge badge-pill badge-info">{{ article.tag1 }}</span>
+                                        <span class="badge badge-pill badge-info">{{ article.tag2 }}</span>
+                                        <span class="badge badge-pill badge-info">{{ article.tag3 }}</span>
+                                        <span class="badge badge-pill badge-info">{{ article.tag4 }}</span>
+                                        <span class="badge badge-pill badge-info">{{ article.tag5 }}</span>
+                                        <span class="badge badge-pill badge-info">{{ article.tag6 }}</span>
+                                    </div>
+                                </td>
+
+                            {% else %}
                                 <td>
                                     <div> {{ article.id }} </div>
                                 </td>
+
                                 <td>
                                     <div class="img-container">
                                         <a href="{{ asset(article.file |trans) }}" target="_blank">
-                                        <img   src="{{ asset(article.file |trans) }}" alt="..." width="100">
+                                        <img src="{{ asset(article.file |trans) }}" alt="..." width="100">
                                         </a>
                                     </div>
                                 </td>
 
                                 <td class="td-name">
-
                                     <div class="text-primary"> {{ article.nom }} </div>
                                     <div class="text-info"> {{ article.marque }} </div>
                                     <div class=""> {{ article.ref1 }} </div>
@@ -88,21 +127,22 @@ Article index
                                         <span class="badge badge-pill badge-info">{{ article.tag5 }}</span>
                                         <span class="badge badge-pill badge-info">{{ article.tag6 }}</span>
                                     </div>
-
                                 </td>
-                                <td class="td-actions text-center">
+
+                                <td {{ light }} class="td-actions text-center">
                                     <div> <a class="btn btn-primary btn-sm --btn-round" href="{{ path('article_show', {'id': article.id}) }}"> show </a> </div>
                                     <div> <a class="btn btn-primary btn-sm --btn-round" href="{{ path('article_edit', {'id': article.id}) }}"> edit </a> </div>
                                 </td>
-                            </tr>
-                        {% else %}
-                            <tr>
-                                <td colspan="11">no records found</td>
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
 
+                            {% endif %}
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="11">no records found</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
                 </div>
 
                  <div class="navigation">

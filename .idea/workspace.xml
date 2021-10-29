@@ -2,21 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="485f71b9-d320-4cfd-96a3-e7d7c329d020" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/migrations/Version20211017100540.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Common/dto/TagsDto.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Form/TagDtoType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Common/dto/TagDto.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Form/TagForm.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/bddba05a-539c-4270-be28-358c18ba0b2f.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/bddba05a-539c-4270-be28-358c18ba0b2f.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Common/dto/TagsDto.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Common/dto/TagsDto.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/ArticleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ArticleController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Dto/ArticleSearchDto.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Dto/ArticleSearchDto.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Marque.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Marque.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/ArticleSearchType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/ArticleSearchType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/ArticleSearchType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/ArticleSearchForm.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/TagDtoType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/TagsForm.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Repository/ArticleRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ArticleRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/article/_filter.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/article/_filter.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/article/gallery.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/article/gallery.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/article/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/article/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/marque/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/marque/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/region/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/region/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -255,10 +252,10 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/Form" />
+      <recent name="$PROJECT_DIR$/src/Common/dto" />
       <recent name="$PROJECT_DIR$/templates" />
       <recent name="C:\Projects\hobby" />
       <recent name="$PROJECT_DIR$/translations" />
-      <recent name="$PROJECT_DIR$/public/build/images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/assets" />
@@ -386,7 +383,18 @@
       <workItem from="1634464498664" duration="69688000" />
       <workItem from="1634534259829" duration="615000" />
       <workItem from="1634579506751" duration="1785000" />
-      <workItem from="1634581314369" duration="1146000" />
+      <workItem from="1634581314369" duration="1878000" />
+      <workItem from="1634836398075" duration="1789000" />
+      <workItem from="1634838207438" duration="1793000" />
+      <workItem from="1634840018840" duration="1789000" />
+      <workItem from="1634841827736" duration="1971000" />
+      <workItem from="1634924167533" duration="1788000" />
+      <workItem from="1634925973260" duration="1790000" />
+      <workItem from="1634927784348" duration="1879000" />
+      <workItem from="1634929685218" duration="823000" />
+      <workItem from="1634992099756" duration="1198000" />
+      <workItem from="1635527085988" duration="1706000" />
+      <workItem from="1635528893459" duration="495000" />
     </task>
     <task id="LOCAL-00001" summary="aa">
       <created>1591375518911</created>
@@ -430,7 +438,14 @@
       <option name="project" value="LOCAL" />
       <updated>1634461492355</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="divers">
+      <created>1634582559517</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1634582559517</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -469,18 +484,18 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/src/Controller/ArticleController.php</url>
-          <line>116</line>
+          <line>127</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/src/Controller/ArticleController.php</url>
-          <line>92</line>
-          <option name="timeStamp" value="7" />
+          <line>43</line>
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/src/Controller/ArticleController.php</url>
-          <line>41</line>
-          <option name="timeStamp" value="8" />
+          <line>103</line>
+          <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

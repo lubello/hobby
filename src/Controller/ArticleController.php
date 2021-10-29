@@ -2,11 +2,13 @@
 
 namespace App\Controller;
 
+use App\Common\dto\TagDto;
 use App\Common\dto\TagsDto;
 use App\Entity\Article;
 use App\Entity\Dto\ArticleSearchDto;
-use App\Form\ArticleSearchType;
+use App\Form\ArticleSearchForm;
 use App\Form\ArticleType;
+use App\Form\TagsForm;
 use App\Repository\ArticleRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use App\Reports\SalesByCustomer;
@@ -47,7 +49,7 @@ class ArticleController extends AbstractController
 
         return $this->render('article/index.html.twig', [
             'articles'  => $articles,
-            //'paginator' => $paginator,  //pas utilisé
+            'paginator' => $paginator,  //pas utilisé
         ]);
     }
 
@@ -92,7 +94,7 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * @Route("/gallery", name="article_gallery", methods={"GET"})
+     * @Route("/gallery", name="article_gallery", methods={"GET","POST"})
      * @param PaginatorInterface $paginator
      * @param Request $request
      * @return Response
@@ -108,14 +110,34 @@ class ArticleController extends AbstractController
         // get tags grouped
         $liste = $this->articleRepository->findaaaa();
         foreach ($liste as $list) {
-            $search->liste[] = new TagsDto($list['tag1'], $list['tag2'], $list['tag3'], $list['tag4'], $list['tag5'], $list['tag6'], $list['total']);
+            $search->liste[] = new TagsDto(
+                new TagDto($list['tag1']),
+                new TagDto($list['tag2']),
+                new TagDto($list['tag3']),
+                new TagDto($list['tag4']),
+                new TagDto($list['tag5']),
+                new TagDto($list['tag6']),
+                $list['total']
+            );
             //var_dump($list['tag1'].' - '.$list['tag2'].PHP_EOL.'<br/>');
         }
 
-        $form = $this->createForm(ArticleSearchType::class, $search);
+        $form = $this->createForm(ArticleSearchForm::class, $search);
         $form->handleRequest($request);
+        //die(var_dump($form->isValid()));
+        if ($form->isSubmitted()) { //} && $form->isValid()) {
+            /** @var ArticleSearchDto $entity */
+            $entity = $form->getData();
+            foreach ($entity->liste as $dto) {
+                if ($dto->isModified()) {
+                    // modifier les articles avec ces tagc (original) par celui modifié
 
-        //dump($search);
+                    die(var_dump($dto));
+                }
+            }
+
+        }
+
         $articles = $this->articleRepository->search($search);
 
 
@@ -240,5 +262,35 @@ class ArticleController extends AbstractController
         ];
 
         return $this->json($array);
+    }
+
+
+
+    /**
+     * @Route("/findByTags", name="article_find_by_tags", methods={"GET"})
+     * @param PaginatorInterface $paginator
+     * @param Request $request
+     * @return Response
+     */
+    public function articleFindByTags(Request $request, PaginatorInterface $paginator): Response
+    {
+        $search = new TagsDto();
+        $search->getTag1()->setTag($request->get('tag1', null));
+        $search->getTag2()->setTag($request->get('tag2', null));
+        $search->getTag3()->setTag($request->get('tag3', null));
+        $search->getTag4()->setTag($request->get('tag4', null));
+        $search->getTag5()->setTag($request->get('tag5', null));
+        $search->getTag6()->setTag($request->get('tag6', null));
+        $form = $this->createForm(TagsForm::class, $search);
+        $form->handleRequest($request);
+        $articles = $this->articleRepository->searchByTags($search);
+
+
+
+        return $this->render('article/index.html.twig', [
+            'articles'  => $articles,
+            'form'      => $form->createView(),
+            'gridLight' => true,
+        ]);
     }
 }

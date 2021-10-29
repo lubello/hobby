@@ -1,20 +1,39 @@
 {% form_theme form.marques 'fields.html.twig' %}
 
 {{ form_start(form, { attr: {class: '--article-filter'}}) }}
-
+<div class="row">
+    <div class="col-md-8">
     <table>
         <thead></thead>
         <tbody>
             {% for list in form.liste %}
                 <tr>
-                    <td> {{ form_row(list.tag1) }} </td>
-                    <td> {{ form_row(list.tag2) }} </td>
-                    <td> {{ form_row(list.tag3) }} </td>
-                    <td> {{ form_row(list.tag4) }} </td>
-                    <td> {{ form_row(list.tag5) }} </td>
-                    <td> {{ form_row(list.tag6) }} </td>
-                    <td> {{ list.total.vars.value }} </td>
+                    <td> <div> {{ form_row(list.tag1.tag) }} </div> </td>
+                    <td> <div> {{ form_row(list.tag2.tag) }} </div> </td>
+                    <td> <div> {{ form_row(list.tag3.tag) }} </div> </td>
+                    <td> <div> {{ form_row(list.tag4.tag) }} </div> </td>
+                    <td> <div> {{ form_row(list.tag5.tag) }} </div> </td>
+                    <td> <div> {{ form_row(list.tag6.tag) }} </div> </td>
+
+                    <td style="width: 10%">
+                        <a target="_blank" href="{{ path('article_find_by_tags', {
+                            'tag1': list.tag1.tag.vars.value,
+                            'tag2': list.tag2.tag.vars.value,
+                            'tag3': list.tag3.tag.vars.value,
+                            'tag4': list.tag4.tag.vars.value,
+                            'tag5': list.tag5.tag.vars.value,
+                            'tag6': list.tag6.tag.vars.value
+                        }) }}"> {{ list.total.vars.value }} article(s) </a>
+
+                    </td>
+
                     <td hidden> {{ form_row(list.total) }} </td>
+                    <td hidden> {{ form_row(list.tag1.tagOriginal) }} </td>
+                    <td hidden> {{ form_row(list.tag2.tagOriginal) }} </td>
+                    <td hidden> {{ form_row(list.tag3.tagOriginal) }} </td>
+                    <td hidden> {{ form_row(list.tag4.tagOriginal) }} </td>
+                    <td hidden> {{ form_row(list.tag5.tagOriginal) }} </td>
+                    <td hidden> {{ form_row(list.tag6.tagOriginal) }} </td>
                 </tr>
             {% endfor %}
         </tbody>
@@ -23,7 +42,8 @@
     <div>
         <button type="submit" class="btn btn-primary w-100">Filtrer</button>
     </div>
-
+    </div>
+</div>
     <h4>Recherche</h4>
 
     {{ form_row(form.q) }}

@@ -18,16 +18,17 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ArticleSearchType extends  AbstractType
+class ArticleSearchForm extends  AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $builder->setMethod('POST');
         $builder
             ->add('liste', CollectionType::class, [
-                'entry_type'    => TagDtoType::class,
+                'entry_type'    => TagsForm::class,
                 'entry_options' => ['label' => false],
                 'allow_add'     => false,
-                'label'         => false,
+                'label'         => true,
                 'required'      => false,
             ])
             ->add('q', TextType::class, [
