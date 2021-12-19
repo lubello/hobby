@@ -2,17 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="485f71b9-d320-4cfd-96a3-e7d7c329d020" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Common/dto/TagDto.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Form/TagForm.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/bddba05a-539c-4270-be28-358c18ba0b2f.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/bddba05a-539c-4270-be28-358c18ba0b2f.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/composer.phar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Common/dto/TagsDto.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Common/dto/TagsDto.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ArticleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ArticleController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Dto/ArticleSearchDto.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Dto/ArticleSearchDto.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/ArticleSearchType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/ArticleSearchForm.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/TagDtoType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/TagsForm.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hobby_heidi.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/ArticleType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/ArticleType.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Repository/ArticleRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ArticleRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/article/_filter.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/article/_filter.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/article/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/article/_form.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/article/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/article/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -395,6 +391,8 @@
       <workItem from="1634992099756" duration="1198000" />
       <workItem from="1635527085988" duration="1706000" />
       <workItem from="1635528893459" duration="495000" />
+      <workItem from="1639840300806" duration="1695000" />
+      <workItem from="1639901944236" duration="657000" />
     </task>
     <task id="LOCAL-00001" summary="aa">
       <created>1591375518911</created>

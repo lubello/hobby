@@ -75,6 +75,11 @@ class ArticleType extends AbstractType
                 'required' => false,
             ])
 
+            ->add('tag6', ChoiceType::class, [
+                'choices' => $this->ar->findForTag6(),
+                'required' => false,
+            ])
+
             ->add('file', FileType::class, ['required' => false])
 
             ->add('save', SubmitType::class, ['label' => 'Créer Article'])

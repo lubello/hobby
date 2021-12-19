@@ -137,6 +137,25 @@ class ArticleRepository extends ServiceEntityRepository
         return $ret;
     }
 
+    /**
+     * @return Article[] Returns an array of Article objects
+     */
+    public function findForTag6(): array {
+        $q = $this->createQueryBuilder('a')
+            ->distinct()
+            ->select('a.tag6')
+            ->where('a.tag6 is not null')
+            ->orderBy('a.tag6', 'ASC')
+            ->getQuery()
+            ->getArrayResult()
+        ;
+
+        $ret = [];
+        foreach ($q as $item) {
+            $ret[$item['tag6']] = $item['tag6'];
+        }
+        return $ret;
+    }
 
 
     public function searchByTags(TagsDto $dto) : ?PaginationInterface
